@@ -3,6 +3,7 @@ from player import Player, Shoot
 from asteroid import Asteroid
 from constants import *
 from asteroidfield import AsteroidField
+from powerup import *
 
 def main():
     """
@@ -18,6 +19,7 @@ def main():
 
     # Initialize Pygame and set up the display window
     pygame.init()
+    pygame.font.init()  # Initialize font module
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     game_clock = pygame.time.Clock()
 
@@ -32,10 +34,17 @@ def main():
     Asteroid.containers = (asteroids_group, updatable_group, drawable_group)
     AsteroidField.containers = (updatable_group)
     Shoot.containers = (shoot_group, updatable_group, drawable_group)
+    PowerUp.containers = (updatable_group, drawable_group)
+    PowerUpField.containers = (updatable_group)
+
 
     # Instantiate the player and asteroid field
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     asteroid_field = AsteroidField()
+    powerup_field = PowerUpField()
+
+    # Initialize the score variable
+    score = 0
 
     dt = 0  # Delta time for frame rate control
 
@@ -57,8 +66,14 @@ def main():
                 pygame.quit()  # Exit the game if player collides with an asteroid
             for bullet in shoot_group:
                 if asteroid.collision_check(bullet):
+                    score += 10
                     bullet.kill()
                     asteroid.split()
+        
+        if powerup_field.power_up and powerup_field.power_up.collision_check(player):
+            player.apply_power_up()  
+            powerup_field.power_up.kill()
+            powerup_field.power_up = None 
 
         # Clear the screen
         screen.fill((0, 0, 0))
@@ -66,6 +81,11 @@ def main():
         # Draw all sprites
         for draw in drawable_group:
             draw.draw(screen)
+        
+        # Display the score on the screen
+        font = pygame.font.SysFont(None, 55)
+        score_text = font.render(f"Score: {score}", True, (255, 255, 255))
+        screen.blit(score_text, ((SCREEN_WIDTH//3) + 140, 10))  # Draw the score in the center-ish
 
         # Update the display
         pygame.display.flip()

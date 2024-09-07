@@ -11,16 +11,11 @@ class Player(circleshape.CircleShape):
     """
 
     def __init__(self, x, y):
-        """
-        Initializes the player at a given position with a predefined radius.
-
-        Args:
-            x (float): The x-coordinate of the player's starting position.
-            y (float): The y-coordinate of the player's starting position.
-        """
         super().__init__(x, y, constants.PLAYER_RADIUS)
         self.rotation = 0
-        self.shot_timer = 0
+        self.shot_timer = 0.3
+        self.original_shot_timer = self.shot_timer  # Store the original shot timer
+        self.power_up_timer = 0  # Initialize power-up timer to 0
 
     def triangle(self):
         """
@@ -91,15 +86,17 @@ class Player(circleshape.CircleShape):
 
     def update(self, dt):
         """
-        Updates the player state based on user input.
-
-        Handles player movement, rotation, and shooting based on key presses.
-
-        Args:
-            dt (float): The time delta since the last update.
+        Updates the player state based on user input and handles power-up effects.
         """
         keys = pygame.key.get_pressed()
         self.shot_timer -= dt
+
+        # Check if the power-up timer is active
+        if self.power_up_timer > 0:
+            self.power_up_timer -= dt
+            if self.power_up_timer <= 0:
+                # Reset the shot_timer to the original value after X seconds
+                self.shot_timer = self.original_shot_timer
 
         if keys[pygame.K_w]:
             self.move(+dt)
@@ -116,7 +113,20 @@ class Player(circleshape.CircleShape):
         if keys[pygame.K_SPACE]:
             if self.shot_timer <= 0:
                 self.shoot()
-                self.shot_timer = constants.PLAYER_SHOOT_COOLDOWN
+                # Check if the power-up timer is active
+                if self.power_up_timer > 0:
+                    self.power_up_timer -= dt
+                    self.shot_timer = 0.005  # Set shot_timer to faster shooting
+                    if self.power_up_timer <= 0:
+                        self.shot_timer = self.original_shot_timer
+                else:
+                    self.shot_timer = self.original_shot_timer
+
+    def apply_power_up(self):
+        """
+        Apply the power-up effect: reduce the shot_timer and set the power-up timer.
+        """
+        self.power_up_timer = 2  # Power-up effect lasts for X seconds
 
 
 class Shoot(circleshape.CircleShape):
