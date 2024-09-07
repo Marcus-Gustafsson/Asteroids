@@ -29,7 +29,7 @@ git clone https://github.com/your-username/asteroid-game.git
 cd asteroid-game
 ```
 
-2. Install dependencies (Pygame):
+#### 2. Install dependencies (Pygame):
 
 Bash:
 ```bash
@@ -41,7 +41,7 @@ PowerShell:
 pip install -r requirements.txt
 ```
 
-3. Run the game by executing the main.py file:
+#### 3. Run the game by executing the main.py file:
 
 Bash:
 ```bash
