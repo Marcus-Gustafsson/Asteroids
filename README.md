@@ -8,9 +8,46 @@ This project is a classic implementation of the **Asteroids** arcade game using 
 
 ## How to Run
 
-1. Ensure you have Python and Pygame installed.
-2. Clone this repository to your local machine.
-3. Run the game by executing the `main.py` file:
-   ```bash
-   python main.py
-   ```
+### Requirements
+- Ensure you have **Python 3** installed on your machine.
+- Install **Pygame** (you can do this via pip).
+
+### Instructions
+
+#### 1. Clone the repository to your local machine:
+
+**Bash**:
+```bash
+git clone https://github.com/your-username/asteroid-game.git
+cd asteroid-game
+```
+
+PowerShell:
+```powershell
+git clone https://github.com/your-username/asteroid-game.git
+cd asteroid-game
+```
+
+2. Install dependencies (Pygame):
+Bash:
+
+```bash
+pip install -r requirements.txt
+```
+PowerShell:
+
+```powershell
+pip install -r requirements.txt
+```
+
+3. Run the game by executing the main.py file:
+Bash:
+
+```bash
+python main.py
+```
+PowerShell:
+
+```powershell
+python main.py
+```
