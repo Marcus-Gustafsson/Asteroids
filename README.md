@@ -17,6 +17,7 @@ This project is a classic implementation of the **Asteroids** arcade game using 
 #### 1. Clone the repository to your local machine:
 
 **Bash**:
+
 ```bash
 git clone https://github.com/your-username/asteroid-game.git
 cd asteroid-game
@@ -29,25 +30,25 @@ cd asteroid-game
 ```
 
 2. Install dependencies (Pygame):
-Bash:
 
+Bash:
 ```bash
 pip install -r requirements.txt
 ```
-PowerShell:
 
+PowerShell:
 ```powershell
 pip install -r requirements.txt
 ```
 
 3. Run the game by executing the main.py file:
-Bash:
 
+Bash:
 ```bash
 python main.py
 ```
-PowerShell:
 
+PowerShell:
 ```powershell
 python main.py
 ```
