@@ -58,4 +58,5 @@ All credits for the background image and sprites used in this project go to thei
 
 Resources:
 Power-up sprite: [https://www.gamedevmarket.net/asset/space-shooter-1-5280]
+
 If you are the author of any of the used assets and would like them removed or credited differently, please contact me.
