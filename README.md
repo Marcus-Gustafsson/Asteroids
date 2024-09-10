@@ -51,3 +51,11 @@ PowerShell:
 ```powershell
 python main.py
 ```
+
+
+### Credits and Resources
+All credits for the background image and sprites used in this project go to their original creators. This project is for educational and portfolio purposes only, and will not be used for commercial purposes.
+
+Resources:
+Power-up sprite: [https://www.gamedevmarket.net/asset/space-shooter-1-5280]
+If you are the author of any of the used assets and would like them removed or credited differently, please contact me.
